@@ -14,7 +14,7 @@ class Scafdb
 	);
 
 	/**
-	 * Do Nothing.
+	 * Show help.
 	 *
 	 * Usage (from command line):
 	 *
@@ -22,11 +22,11 @@ class Scafdb
 	 */
 	public static function run()
 	{
-		exit('You must choose one method.'); //TODO:
+		self::help();
 	}
 
 	/**
-	 * Scaffold by database table.
+	 * Generate scaffold for a exists database table.
 	 *
 	 * Usage (from command line):
 	 *
@@ -45,7 +45,7 @@ class Scafdb
 	}
 
 	/**
-	 * Scaffold all database tables.
+	 * Generate scaffold for all exists database tables.
 	 *
 	 * Usage (from command line):
 	 *
@@ -66,7 +66,7 @@ class Scafdb
 	}
 
 	/**
-	 * Scaffold model by database table.
+	 * Generate model for a exists database table.
 	 *
 	 * Usage (from command line):
 	 *
@@ -83,7 +83,7 @@ class Scafdb
 	}
 
 	/**
-	 * Scaffold all models.
+	 * Generate model for all exists database tables.
 	 *
 	 * Usage (from command line):
 	 *
@@ -101,6 +101,36 @@ class Scafdb
 
 			self::model($table);
 		}
+	}
+
+	/**
+	 * Show help.
+	 *
+	 * Usage (from command line):
+	 *
+	 * php oil r scafdb:help
+	 */
+	public static function help()
+	{
+		$output = <<<HELP
+
+Description:
+  Generate scaffold or model for exists database tables.
+  Database settings must be configured.
+
+Runtime options:
+  -f, [--force]    # Overwrite files that already exist
+  -a, [--admin]    # Generate admin
+
+Commands:
+  php oil r scafdb:scaf <table>
+  php oil r scafdb:scaf_all
+  php oil r scafdb:model <table>
+  php oil r scafdb:model_all
+  php oil r scafdb:help
+
+HELP;
+		\Cli::write($output);
 	}
 
 	/*******************************************************
