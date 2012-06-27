@@ -37,7 +37,7 @@ class Validation extends Fuel\Core\Validation
 	}
 
 	/**
-	 * in_array($val, $array) by static array on model
+	 * in_array($val, array_keys($array)) by static array on model
 	 * 
 	 * @param   string val, string model_name, string array_name
 	 * @return  bool
