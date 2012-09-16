@@ -10,13 +10,13 @@ namespace Fuel\Tasks;
  */
 class Scafdb
 {
-	public static $ignore_fields = array(
+	private static $ignore_fields = array(
 		'id',
 		'created_at',
 		'updated_at',
 	);
 
-	public static $ignore_tables = array(
+	private static $ignore_tables = array(
 		'migration',
 	);
 
