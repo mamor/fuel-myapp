@@ -123,9 +123,9 @@ Runtime options:
   -a, [--admin]    # Generate admin
 
 Commands:
-  php oil r scafdb:scaf <table>
+  php oil r scafdb:scaf <table_name>
   php oil r scafdb:scaf_all
-  php oil r scafdb:model <table>
+  php oil r scafdb:model <table_name>
   php oil r scafdb:model_all
   php oil r scafdb:help
 
