@@ -61,7 +61,7 @@ class Scafdb
 				continue;
 			}
 
-			self::run($table);
+			self::scaf($table);
 		}
 	}
 
