@@ -32,9 +32,9 @@ class Scafdb
 	 *
 	 * php oil r scafdb:scaf $table
 	 */
-	public static function scaf($table='')
+	public static function scaf($table = '')
 	{
-		if(!strlen($table))
+		if ( ! strlen($table))
 		{
 			exit('Usage : php oil r scafdb:scaf $table');
 		}
@@ -56,7 +56,7 @@ class Scafdb
 		$tables = \DB::list_tables();
 		foreach ($tables as $table)
 		{
-			if(in_array($table, self::$ignore_tables))
+			if (in_array($table, self::$ignore_tables))
 			{
 				continue;
 			}
@@ -72,9 +72,9 @@ class Scafdb
 	 *
 	 * php oil r scafdb:model $table
 	 */
-	public static function model($table='')
+	public static function model($table = '')
 	{
-		if(!strlen($table))
+		if ( ! strlen($table))
 		{
 			exit('Usage : php oil r scafdb:model $table');
 		}
@@ -94,7 +94,7 @@ class Scafdb
 		$tables = \DB::list_tables();
 		foreach ($tables as $table)
 		{
-			if(in_array($table, self::$ignore_tables))
+			if (in_array($table, self::$ignore_tables))
 			{
 				continue;
 			}
@@ -143,13 +143,13 @@ HELP;
 		$args = array();
 		foreach ($cols as $col)
 		{
-			if(in_array($col['name'], self::$ignore_fields))
+			if (in_array($col['name'], self::$ignore_fields))
 			{
 				continue;
 			}
 
 			$constraint = ''; //TODO:
-			$args[] = $col['name'] . ':' . $col['data_type'] . $constraint;
+			$args[] = $col['name'].':'.$col['data_type'].$constraint;
 		}
 
 		array_unshift($args, $table);
