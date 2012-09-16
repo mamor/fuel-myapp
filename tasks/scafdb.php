@@ -1,6 +1,13 @@
 <?php
 namespace Fuel\Tasks;
 
+/**
+ * Generate scaffold or model for database tables.
+ *
+ * @author     Mamoru Otsuka http://madroom-project.blogspot.jp/
+ * @copyright  2012 Mamoru Otsuka
+ * @license    WTFPL http://sam.zoy.org/wtfpl/COPYING
+ */
 class Scafdb
 {
 	public static $ignore_fields = array(
@@ -26,7 +33,7 @@ class Scafdb
 	}
 
 	/**
-	 * Generate scaffold for a exists database table.
+	 * Generate scaffold for a database table.
 	 *
 	 * Usage (from command line):
 	 *
@@ -45,7 +52,7 @@ class Scafdb
 	}
 
 	/**
-	 * Generate scaffold for all exists database tables.
+	 * Generate scaffold for all database tables.
 	 *
 	 * Usage (from command line):
 	 *
@@ -66,7 +73,7 @@ class Scafdb
 	}
 
 	/**
-	 * Generate model for a exists database table.
+	 * Generate model for a database table.
 	 *
 	 * Usage (from command line):
 	 *
@@ -83,7 +90,7 @@ class Scafdb
 	}
 
 	/**
-	 * Generate model for all exists database tables.
+	 * Generate model for all database tables.
 	 *
 	 * Usage (from command line):
 	 *
