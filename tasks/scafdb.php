@@ -29,7 +29,7 @@ class Scafdb
 	 */
 	public static function run()
 	{
-		self::help();
+		static::help();
 	}
 
 	/**
@@ -47,8 +47,8 @@ class Scafdb
 		}
 
 		$subfolder = 'orm'; //TODO:
-		call_user_func(self::is_admin() ?
-			'Oil\Generate_Admin::forge' : 'Oil\Generate_Scaffold::forge', self::mk_args($table), $subfolder);
+		call_user_func(static::is_admin() ?
+			'Oil\Generate_Admin::forge' : 'Oil\Generate_Scaffold::forge', static::mk_args($table), $subfolder);
 	}
 
 	/**
@@ -63,12 +63,12 @@ class Scafdb
 		$tables = \DB::list_tables();
 		foreach ($tables as $table)
 		{
-			if (in_array($table, self::$ignore_tables))
+			if (in_array($table, static::$ignore_tables))
 			{
 				continue;
 			}
 
-			self::scaf($table);
+			static::scaf($table);
 		}
 	}
 
@@ -86,7 +86,7 @@ class Scafdb
 			exit('Usage : php oil r scafdb:model $table');
 		}
 
-		call_user_func('Oil\Generate::model', self::mk_args($table));
+		call_user_func('Oil\Generate::model', static::mk_args($table));
 	}
 
 	/**
@@ -101,12 +101,12 @@ class Scafdb
 		$tables = \DB::list_tables();
 		foreach ($tables as $table)
 		{
-			if (in_array($table, self::$ignore_tables))
+			if (in_array($table, static::$ignore_tables))
 			{
 				continue;
 			}
 
-			self::model($table);
+			static::model($table);
 		}
 	}
 
@@ -150,7 +150,7 @@ HELP;
 		$args = array();
 		foreach ($cols as $col)
 		{
-			if (in_array($col['name'], self::$ignore_fields))
+			if (in_array($col['name'], static::$ignore_fields))
 			{
 				continue;
 			}
