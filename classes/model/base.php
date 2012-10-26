@@ -9,7 +9,7 @@ class Model_Base extends \Orm\Model
 		$fieldset = Fieldset::forge($name, array('form_attributes' => $form_attributes))
 			->add_model(get_called_class())->populate($model);
 
-		$fieldset->add('id', 'id', array('type'=>'hidden', 'value'=>$id));
+		$fieldset->add('id', 'id', array('type' => 'hidden', 'value' => $id));
 
 		$fieldset->add(
 			Config::get('security.csrf_token_key'),
