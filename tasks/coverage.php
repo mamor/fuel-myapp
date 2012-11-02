@@ -10,7 +10,8 @@ namespace Fuel\Tasks;
  */
 class Coverage
 {
-	const DIR = '../coverage';
+	const DEFAULT_DIR = '../coverage/';
+	const DEFAULT_GROUP = 'App';
 
 	/**
 	 * Show help.
@@ -25,17 +26,85 @@ class Coverage
 	}
 
 	/**
-	 * Generate Code Coverage Report for HTML.
+	 * Generate Code Coverage Report for html.
 	 *
 	 * Usage (from command line):
 	 *
 	 * php oil r coverage:html [dir [group ]
 	 */
-	public static function html($dir = null, $group = 'App')
+	public static function html($dir = null, $group = self::DEFAULT_GROUP)
 	{
-		$dir = $dir ? $dir : static::DIR;
-		static::check_dir($dir);
-		static::coverage($group, 'html', $dir);
+		$type = $file = 'html';
+		$path = $dir ? rtrim($dir, DS).DS.$file : static::DEFAULT_DIR.$file;
+
+		static::check_path($path);
+		static::coverage($group, $type, $path);
+	}
+
+	/**
+	 * Generate Code Coverage Report for clover.
+	 *
+	 * Usage (from command line):
+	 *
+	 * php oil r coverage:clover [dir [group ]
+	 */
+	public static function clover($dir = null, $group = self::DEFAULT_GROUP)
+	{
+		$type = 'clover';
+		$file = 'coverage.xml';
+		$path = $dir ? rtrim($dir, DS).DS.$file : static::DEFAULT_DIR.$file;
+
+		static::check_path($path);
+		static::coverage($group, $type, $path);
+	}
+
+	/**
+	 * Generate Code Coverage Report for text.
+	 *
+	 * Usage (from command line):
+	 *
+	 * php oil r coverage:text [dir [group ]
+	 */
+	public static function text($dir = null, $group = self::DEFAULT_GROUP)
+	{
+		$type = 'text';
+		$file = 'coverage.text';
+		$path = $dir ? rtrim($dir, DS).DS.$file : static::DEFAULT_DIR.$file;
+
+		static::check_path($path);
+		static::coverage($group, $type, $path);
+	}
+
+	/**
+	 * Generate Code Coverage Report for php.
+	 *
+	 * Usage (from command line):
+	 *
+	 * php oil r coverage:php [dir [group ]
+	 */
+	public static function php($dir = null, $group = self::DEFAULT_GROUP)
+	{
+		$type = 'php';
+		$file = 'coverage.php';
+		$path = $dir ? rtrim($dir, DS).DS.$file : static::DEFAULT_DIR.$file;
+
+		static::check_path($path);
+		static::coverage($group, $type, $path);
+	}
+
+	/**
+	 * Generate Code Coverage Report for all types.
+	 *
+	 * Usage (from command line):
+	 *
+	 * php oil r coverage:all [dir [group ]
+	 */
+	public static function all($dir = null, $group = self::DEFAULT_GROUP)
+	{
+		static::html($dir, $group);
+		static::clover($dir, $group);
+		static::text($dir, $group);
+		static::php($dir, $group);
 	}
 
 	/**
@@ -52,8 +121,15 @@ class Coverage
 Description:
   Generate Code Coverage Report.
 
+Runtime options:
+  -f, [--force]    # Force delete and generate Coverage Report that already exist
+
 Commands:
   php oil r coverage:html [dir [group ]
+  php oil r coverage:clover [dir [group ]
+  php oil r coverage:text [dir [group ]
+  php oil r coverage:php [dir [group ]
+  php oil r coverage:all [dir [group ]
   php oil r coverage:help
 
 HELP;
@@ -63,39 +139,39 @@ HELP;
 	/*******************************************************
 	 * Private Methods
 	 ******************************************************/
-	private static function check_dir($dir)
+	private static function check_path($path)
 	{
-		if (file_exists($dir))
+		if (file_exists($path))
 		{
 			if ( ! \Cli::option('f'))
 			{
-				throw new \Exception(realpath($dir).' already exist, please use -f option to force delete and generate.');
+				throw new \Exception(realpath($path).' already exist, please use -f option to force delete and generate.');
 			}
 
-			if ( ! static::delete_dir($dir))
+			if ( ! static::delete_path($path))
 			{
-				throw new \Exception('Could not delete '.realpath($dir));
+				throw new \Exception('Could not delete '.realpath($path));
 			}
 		}
 	}
 
-	private static function delete_dir($dir)
+	private static function delete_path($path)
 	{
-		if (is_dir($dir))
+		if (is_dir($path))
 		{
-			return \File::delete_dir($dir);
-		} else if (is_file($dir))
+			return \File::delete_dir($path);
+		} else if (is_file($path))
 		{
-			return \File::delete($dir);
+			return \File::delete($path);
 		}
 
 		return false;
 	}
 
-	private static function coverage($group, $type, $dir)
+	private static function coverage($group, $type, $path)
 	{
 		$fmt = 'php oil test --group=%s --coverage-%s=%s';
-		$cmd = escapeshellcmd(sprintf($fmt, $group, $type, $dir));
+		$cmd = escapeshellcmd(sprintf($fmt, $group, $type, $path));
 		$output = null;
 
 		exec($cmd, $output);
