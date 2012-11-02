@@ -143,7 +143,7 @@ HELP;
 	{
 		if (file_exists($path))
 		{
-			if ( ! \Cli::option('f'))
+			if ( ! \Cli::option('f') and ! \Cli::option('force'))
 			{
 				throw new \Exception(realpath($path).' already exist, please use -f option to force delete and generate.');
 			}
