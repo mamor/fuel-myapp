@@ -65,7 +65,7 @@ HELP;
 	 ******************************************************/
 	private static function check_dir($dir)
 	{
-		if(file_exists($dir))
+		if (file_exists($dir))
 		{
 			if ( ! \Cli::option('f'))
 			{
