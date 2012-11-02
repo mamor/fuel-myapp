@@ -33,19 +33,9 @@ class Coverage
 	 */
 	public static function html($dir = null, $group = 'App')
 	{
-		$fmt = 'php oil test --group=%s --coverage-html=%s';
 		$dir = $dir ? $dir : static::DIR;
-
-		if (is_dir($dir))
-		{
-			\File::delete_dir($dir);
-		}
-
-		$cmd = escapeshellcmd(sprintf($fmt, $group, $dir));
-		$output = null;
-
-		exec($cmd, $output);
-		\Cli::write($output);
+		static::check_dir($dir);
+		static::coverage($group, 'html', $dir);
 	}
 
 	/**
@@ -69,6 +59,49 @@ Commands:
 HELP;
 		\Cli::write($output);
 	}
+
+	/*******************************************************
+	 * Private Methods
+	 ******************************************************/
+	private static function check_dir($dir)
+	{
+		if(file_exists($dir))
+		{
+			if ( ! \Cli::option('f'))
+			{
+				throw new \Exception(realpath($dir).' already exist, please use -f option to force delete and generate.');
+			}
+
+			if ( ! static::delete_dir($dir))
+			{
+				throw new \Exception('Could not delete '.realpath($dir));
+			}
+		}
+	}
+
+	private static function delete_dir($dir)
+	{
+		if (is_dir($dir))
+		{
+			return \File::delete_dir($dir);
+		} else if (is_file($dir))
+		{
+			return \File::delete($dir);
+		}
+
+		return false;
+	}
+
+	private static function coverage($group, $type, $dir)
+	{
+		$fmt = 'php oil test --group=%s --coverage-%s=%s';
+		$cmd = escapeshellcmd(sprintf($fmt, $group, $type, $dir));
+		$output = null;
+
+		exec($cmd, $output);
+		\Cli::write($output);
+	}
+
 }
 
 /* End of file tasks/coverage.php */
