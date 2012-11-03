@@ -3,7 +3,7 @@
 class My_Func
 {
 
-	public static function errors_to_array(Validation_Error $errors)
+	public static function errors_to_array($errors)
 	{
 		$messages = array();
 		foreach ($errors as $error)
