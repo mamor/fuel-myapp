@@ -12,8 +12,8 @@ namespace Fuel\Tasks;
 
 class Generate
 {
-	static $class_definition = '';
-	
+	public static $class_definition = '';
+
 	public static function run()
 	{
 		echo <<<EOL
@@ -21,18 +21,18 @@ Usage:
   oil refine generate:autocomplete  ... generate php file for IDE's auto completion
 EOL;
 	}
-	
+
 	public static function autocomplete()
 	{
 		$filelist = \File::read_dir(COREPATH . 'classes');
 		$filelist = static::convert_filelist($filelist);
-		
+
 		static::generate_class_definition($filelist);
-		
+
 		static::$class_definition = '<?php' . "\n\n" . static::$class_definition;
 		$file = APPPATH . '_autocomplete.php';
 		$ret = file_put_contents($file, static::$class_definition);
-		
+
 		if ($ret === false)
 		{
 			echo 'Can\'t write to ' . $file;
@@ -42,14 +42,14 @@ EOL;
 			echo $file . ' was created.';
 		}
 	}
-	
+
 	private static function generate_class_definition(Array $filelist)
 	{
 		foreach ($filelist as $file)
 		{
 			//echo "$file\n";
 			$lines = file(COREPATH . 'classes/' . $file);
-			
+
 			foreach ($lines as $line)
 			{
 				if (preg_match('/^class (\w+)/', $line, $matches))
@@ -70,7 +70,7 @@ EOL;
 			}
 		}
 	}
-	
+
 	/**
 	* Convert Filelist Array to Single Dimension Array
 	*
@@ -81,7 +81,7 @@ EOL;
 	private static function convert_filelist($arr, $dir = '')
 	{
 		static $list = array();
-	
+
 		foreach ($arr as $key => $val)
 		{
 			if (is_array($val))
@@ -93,7 +93,7 @@ EOL;
 				$list[] = $dir . $val;
 			}
 		}
-	
+
 		return $list;
 	}
 }

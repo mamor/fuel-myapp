@@ -4,7 +4,7 @@ class Validation extends Fuel\Core\Validation
 {
 	/**
 	 * in_array($val, $array)
-	 * 
+	 *
 	 * @param   string, array
 	 * @return  bool
 	 */
@@ -15,7 +15,7 @@ class Validation extends Fuel\Core\Validation
 
 	/**
 	 * in_array($val, array_keys($array))
-	 * 
+	 *
 	 * @param   string, array
 	 * @return  bool
 	 */
@@ -26,7 +26,7 @@ class Validation extends Fuel\Core\Validation
 
 	/**
 	 * in_array($val, $array) by static array on model
-	 * 
+	 *
 	 * @param   string val, string model_name, string array_name
 	 * @return  bool
 	 */
@@ -38,7 +38,7 @@ class Validation extends Fuel\Core\Validation
 
 	/**
 	 * in_array($val, array_keys($array)) by static array on model
-	 * 
+	 *
 	 * @param   string val, string model_name, string array_name
 	 * @return  bool
 	 */

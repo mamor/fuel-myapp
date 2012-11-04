@@ -18,14 +18,14 @@ class Fieldset_Field extends Fuel\Core\Fieldset_Field
 	public function set_my_prefix($my_prefix)
 	{
 		$this->my_prefix = strval($my_prefix);
-	
+
 		return $this;
 	}
 
 	public function set_my_suffix($my_suffix)
 	{
 		$this->my_suffix = strval($my_suffix);
-	
+
 		return $this;
 	}
 

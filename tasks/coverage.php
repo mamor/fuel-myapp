@@ -160,7 +160,7 @@ HELP;
 		if (is_dir($path))
 		{
 			return \File::delete_dir($path);
-		} else if (is_file($path))
+		} elseif (is_file($path))
 		{
 			return \File::delete($path);
 		}

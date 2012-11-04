@@ -15,7 +15,7 @@ class Model_Base extends \Orm\Model
 			Config::get('security.csrf_token_key'),
 			Config::get('security.csrf_token_key'),
 			array('type' => 'hidden', 'value' => null));
-	
+
 		return $fieldset;
 	}
 
