@@ -65,7 +65,15 @@ class Scafdb
 	 */
 	public static function scaf_all()
 	{
-		$tables = \DB::list_tables();
+		try
+		{
+			$tables = \DB::list_tables();
+		}
+		catch (\FuelException $e)
+		{
+			exit("PDO driver cannot be used on this method. Please use other drivers.\n");
+		}
+
 		foreach ($tables as $table)
 		{
 			if (in_array($table, static::$ignore_tables))
@@ -108,7 +116,15 @@ class Scafdb
 	 */
 	public static function model_all()
 	{
-		$tables = \DB::list_tables();
+		try
+		{
+			$tables = \DB::list_tables();
+		}
+		catch (\FuelException $e)
+		{
+			exit("PDO driver cannot be used on this method. Please use other drivers.\n");
+		}
+
 		foreach ($tables as $table)
 		{
 			if (in_array($table, static::$ignore_tables))
