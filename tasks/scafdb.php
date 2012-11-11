@@ -37,18 +37,23 @@ class Scafdb
 	 *
 	 * Usage (from command line):
 	 *
-	 * php oil r scafdb:scaf $table
+	 * php oil r scafdb:scaf <table_name,table_name...>
 	 */
-	public static function scaf($table = '')
+	public static function scaf($tables = '')
 	{
-		if ( ! strlen($table))
+		if ( ! strlen($tables))
 		{
-			exit('Usage : php oil r scafdb:scaf $table');
+			exit("Usage : php oil r scafdb:scaf <table_name,table_name...>\n");
 		}
 
-		$subfolder = 'orm'; //TODO:
-		call_user_func(static::is_admin() ?
-			'Oil\Generate_Admin::forge' : 'Oil\Generate_Scaffold::forge', static::mk_args($table), $subfolder);
+		$tables = explode(',', $tables);
+
+		foreach ($tables as $table)
+		{
+			$subfolder = 'orm'; //TODO:
+			call_user_func(static::is_admin() ?
+				'Oil\Generate_Admin::forge' : 'Oil\Generate_Scaffold::forge', static::mk_args($table), $subfolder);
+		}
 	}
 
 	/**
@@ -77,16 +82,21 @@ class Scafdb
 	 *
 	 * Usage (from command line):
 	 *
-	 * php oil r scafdb:model $table
+	 * php oil r scafdb:model <table_name,table_name...>
 	 */
-	public static function model($table = '')
+	public static function model($tables = '')
 	{
-		if ( ! strlen($table))
+		if ( ! strlen($tables))
 		{
-			exit('Usage : php oil r scafdb:model $table');
+			exit("Usage : php oil r scafdb:model <table_name,table_name...>\n");
 		}
 
-		call_user_func('Oil\Generate::model', static::mk_args($table));
+		$tables = explode(',', $tables);
+
+		foreach ($tables as $table)
+		{
+			call_user_func('Oil\Generate::model', static::mk_args($table));
+		}
 	}
 
 	/**
@@ -130,9 +140,9 @@ Runtime options:
   -a, [--admin]    # Generate admin
 
 Commands:
-  php oil r scafdb:scaf <table_name>
+  php oil r scafdb:scaf <table_name,table_name...>
   php oil r scafdb:scaf_all
-  php oil r scafdb:model <table_name>
+  php oil r scafdb:model <table_name,table_name...>
   php oil r scafdb:model_all
   php oil r scafdb:help
 
