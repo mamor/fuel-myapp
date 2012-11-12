@@ -50,6 +50,8 @@ class Scafdb
 
 		foreach ($tables as $table)
 		{
+			\Oil\Generate::$create_files = array();
+
 			$subfolder = 'orm'; //TODO:
 			call_user_func(static::is_admin() ?
 				'Oil\Generate_Admin::forge' : 'Oil\Generate_Scaffold::forge', static::mk_args($table), $subfolder);
@@ -71,11 +73,14 @@ class Scafdb
 		}
 		catch (\FuelException $e)
 		{
-			exit("PDO driver cannot be used on this method. Please use other drivers.\n");
+			\Cli::write('PDO driver cannot be used on this method. Please use other drivers.', 'red');
+			exit();
 		}
 
 		foreach ($tables as $table)
 		{
+			$table = static::remove_table_prefix($table);
+
 			if (in_array($table, static::$ignore_tables))
 			{
 				continue;
@@ -103,6 +108,8 @@ class Scafdb
 
 		foreach ($tables as $table)
 		{
+			\Oil\Generate::$create_files = array();
+
 			call_user_func('Oil\Generate::model', static::mk_args($table));
 		}
 	}
@@ -122,11 +129,14 @@ class Scafdb
 		}
 		catch (\FuelException $e)
 		{
-			exit("PDO driver cannot be used on this method. Please use other drivers.\n");
+			\Cli::write('PDO driver cannot be used on this method. Please use other drivers.', 'red');
+			exit();
 		}
 
 		foreach ($tables as $table)
 		{
+			$table = static::remove_table_prefix($table);
+
 			if (in_array($table, static::$ignore_tables))
 			{
 				continue;
@@ -171,7 +181,15 @@ HELP;
 	 ******************************************************/
 	private static function mk_args($table)
 	{
-		$cols = \DB::list_columns($table);
+		try
+		{
+			$cols = \DB::list_columns($table);
+		}
+		catch (\Exception $e)
+		{
+			\Cli::write($e->getMessage(), 'red');
+			exit();
+		}
 
 		$args = array();
 		foreach ($cols as $col)
@@ -193,6 +211,11 @@ HELP;
 	private static function is_admin()
 	{
 		return \Cli::option('admin') || \Cli::option('a');
+	}
+
+	private static function remove_table_prefix($table)
+	{
+		return preg_replace('/^'.\DB::table_prefix().'/', '', $table);
 	}
 }
 
