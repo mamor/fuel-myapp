@@ -43,7 +43,8 @@ class Scafdb
 	{
 		if ( ! strlen($tables))
 		{
-			exit("Usage : php oil r scafdb:scaf <table_name,table_name...>\n");
+			\Cli::write("Usage : php oil r scafdb:scaf <table_name,table_name...>");
+			exit();
 		}
 
 		$tables = explode(',', $tables);
@@ -101,7 +102,8 @@ class Scafdb
 	{
 		if ( ! strlen($tables))
 		{
-			exit("Usage : php oil r scafdb:model <table_name,table_name...>\n");
+			\Cli::write("Usage : php oil r scafdb:model <table_name,table_name...>");
+			exit();
 		}
 
 		$tables = explode(',', $tables);
