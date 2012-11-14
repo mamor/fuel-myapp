@@ -53,7 +53,8 @@ class Scafdb
 		{
 			\Oil\Generate::$create_files = array();
 
-			$subfolder = 'orm'; //TODO:
+			$subfolder = \Cli::option('crud') ? 'crud' : 'orm';
+
 			call_user_func(static::is_admin() ?
 				'Oil\Generate_Admin::forge' : 'Oil\Generate_Scaffold::forge', static::mk_args($table), $subfolder);
 		}
