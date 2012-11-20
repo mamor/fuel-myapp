@@ -5,8 +5,8 @@ class Validation extends Fuel\Core\Validation
 	/**
 	 * in_array($val, $array)
 	 *
-	 * @param   string, array
-	 * @return  bool
+	 * @param  string, array
+	 * @return bool
 	 */
 	public function _validation_my_in_array_vals($val, $array)
 	{
@@ -16,8 +16,8 @@ class Validation extends Fuel\Core\Validation
 	/**
 	 * in_array($val, array_keys($array))
 	 *
-	 * @param   string, array
-	 * @return  bool
+	 * @param  string, array
+	 * @return bool
 	 */
 	public function _validation_my_in_array_keys($val, $array)
 	{
@@ -27,8 +27,8 @@ class Validation extends Fuel\Core\Validation
 	/**
 	 * in_array($val, $array) by static array on model
 	 *
-	 * @param   string val, string model_name, string array_name
-	 * @return  bool
+	 * @param  string val, string model_name, string array_name
+	 * @return bool
 	 */
 	public function _validation_my_in_model_static_array_vals($val, $model_name, $array_name)
 	{
@@ -39,8 +39,8 @@ class Validation extends Fuel\Core\Validation
 	/**
 	 * in_array($val, array_keys($array)) by static array on model
 	 *
-	 * @param   string val, string model_name, string array_name
-	 * @return  bool
+	 * @param  string val, string model_name, string array_name
+	 * @return bool
 	 */
 	public function _validation_my_in_model_static_array_keys($val, $model_name, $array_name)
 	{

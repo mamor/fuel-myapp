@@ -12,11 +12,11 @@ class Test_My_Date extends TestCase
 	}
 
 	protected function tearDown()
-    {
-    }
+	{
+	}
 
 	public function test_get_first_day()
-    {
+	{
 		//this month (Y-m-d)
 		$expected = date('Y-m-').'01';
 		$actual = My_Date::get_first_day();
@@ -34,7 +34,7 @@ class Test_My_Date extends TestCase
 	}
 
 	public function test_get_last_day()
-    {
+	{
 		//this month
 		$date = date_create(date('Ym').'01');
 		date_add($date, date_interval_create_from_date_string('1 month'));

@@ -6,7 +6,7 @@ class Input extends Fuel\Core\Input
 	/**
 	 * Return's whether this is an PJAX request or not
 	 *
-	 * @return  bool
+	 * @return bool
 	 */
 	public static function is_pjax()
 	{
@@ -16,7 +16,7 @@ class Input extends Fuel\Core\Input
 	/**
 	 * Return's php://input
 	 *
-	 * @return  php://input
+	 * @return php://input
 	 */
 	public static function php_input()
 	{
