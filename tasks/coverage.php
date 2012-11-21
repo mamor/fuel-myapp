@@ -38,7 +38,7 @@ class Coverage
 		$path = $dir ? rtrim($dir, DS).DS.$file : static::DEFAULT_DIR.$file;
 
 		static::check_path($path);
-		static::coverage($group, $type, $path);
+		static::generate($group, $type, $path);
 	}
 
 	/**
@@ -55,7 +55,7 @@ class Coverage
 		$path = $dir ? rtrim($dir, DS).DS.$file : static::DEFAULT_DIR.$file;
 
 		static::check_path($path);
-		static::coverage($group, $type, $path);
+		static::generate($group, $type, $path);
 	}
 
 	/**
@@ -72,7 +72,7 @@ class Coverage
 		$path = $dir ? rtrim($dir, DS).DS.$file : static::DEFAULT_DIR.$file;
 
 		static::check_path($path);
-		static::coverage($group, $type, $path);
+		static::generate($group, $type, $path);
 	}
 
 	/**
@@ -89,7 +89,7 @@ class Coverage
 		$path = $dir ? rtrim($dir, DS).DS.$file : static::DEFAULT_DIR.$file;
 
 		static::check_path($path);
-		static::coverage($group, $type, $path);
+		static::generate($group, $type, $path);
 	}
 
 	/**
@@ -168,7 +168,7 @@ HELP;
 		return false;
 	}
 
-	private static function coverage($group, $type, $path)
+	private static function generate($group, $type, $path)
 	{
 		$fmt = 'php oil test --group=%s --coverage-%s=%s';
 		$cmd = escapeshellcmd(sprintf($fmt, $group, $type, $path));
