@@ -40,7 +40,7 @@ class Phpdoc
 		! $output_path and $output_path = self::DEFAULT_OUTPUT_PATH;
 		$output_path = rtrim($output_path, '/').'/';
 
-		$ignore_paths = $input_path.implode(','.$input_path, explode(',', $ignore_paths));
+		strlen($ignore_paths) and $ignore_paths = $input_path.implode(','.$input_path, explode(',', $ignore_paths));
 
 		static::check_path($output_path);
 		static::generate($input_path, $output_path, $ignore_paths);
