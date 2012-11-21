@@ -1,6 +1,6 @@
 <?php
 
-class My_Date
+class My_Date extends Date
 {
 	/**
 	 * Get first day on target month
