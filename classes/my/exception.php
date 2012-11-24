@@ -1,6 +1,6 @@
 <?php
 
-class My_Exception extends FuelException
+class My_Exception extends Fuel\Core\FuelException
 {
 	public function __construct($message, $code = 0, Exception $previous = null)
 	{

@@ -1,6 +1,6 @@
 <?php
 
-class My_Date extends Date
+class My_Date extends Fuel\Core\Date
 {
 	/**
 	 * Get first day on target month
