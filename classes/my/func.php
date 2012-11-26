@@ -41,7 +41,7 @@ class My_Func
 		}
 		while (($min_length > $i) || (pow($asciis_count, $i) <= $index));
 
-		return implode("", $hashs);
+		return implode('', $hashs);
 	}
 
 }
