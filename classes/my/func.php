@@ -3,6 +3,14 @@
 class My_Func
 {
 
+	public static function auto_link($str, $is_blank = true)
+	{
+		$target = $is_blank ? ' target="_blank"' : '';
+		$patterns = array("/(https?|ftp)(:\/\/[[:alnum:]\+\$\;\?\.%,!#~*\/:@&=_-]+)/i");
+		$replacements = array("<a href=\"\\1\\2\"{$target}>\\1\\2</a>");
+		return preg_replace($patterns, $replacements, $str);
+	}
+
 	public static function errors_to_array($errors)
 	{
 		$messages = array();
