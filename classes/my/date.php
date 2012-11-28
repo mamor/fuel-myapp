@@ -7,7 +7,7 @@ class My_Date extends Fuel\Core\Date
 	 *
 	 * @param string $yyyymm
 	 * @param int $add_month
-	 * @param int $fmt
+	 * @param string $fmt
 	 * @return string
 	 */
 	public static function get_first_day($yyyymm = null, $add_month = 0, $fmt = 'Y-m-d')
@@ -25,7 +25,7 @@ class My_Date extends Fuel\Core\Date
 	 *
 	 * @param string $yyyymm
 	 * @param int $add_month
-	 * @param int $fmt
+	 * @param string $fmt
 	 * @return string
 	 */
 	public static function get_last_day($yyyymm = null, $add_month = 0, $fmt = 'Y-m-d')
