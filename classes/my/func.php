@@ -3,6 +3,11 @@
 class My_Func
 {
 
+	public static function mk_gravatar_hash($email)
+	{
+		return md5(strtolower($email));
+	}
+
 	public static function auto_link($str, $is_blank = true)
 	{
 		$target = $is_blank ? ' target="_blank"' : '';
