@@ -11,7 +11,7 @@ namespace Fuel\Tasks;
 class Phpdoc
 {
 	const DEFAULT_INPUT_PATH = 'fuel/app/classes/';
-	const DEFAULT_OUTPUT_PATH = '../docs/';
+	const DEFAULT_OUTPUT_PATH = '../phpdoc/';
 
 	/**
 	 * Show help.
