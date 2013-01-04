@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<project name="FuelPHP Project" basedir="." default="all">
+
+  <property name="phing_dir_name" value="phing" />
+	<property name="phpunit_dir_name" value="${phing_dir_name}/phpunit" />
+	<property name="phpdoc_dir_name" value="${phing_dir_name}/phpdoc" />
+	<property name="phpmd_dir_name" value="${phing_dir_name}/phpmd" />
+	<property name="phpcpd_dir_name" value="${phing_dir_name}/phpcpd" />
+
+	<target name="init">
+		<delete dir="${phing_dir_name}" includeemptydirs="true" />
+		<mkdir dir="${phing_dir_name}" />
+	</target>
+
+	<target name="phpunit">
+		<mkdir dir="${phpunit_dir_name}" />
+		<exec dir="." command="
+			phpunit
+			-c fuel/app/phpunit.xml
+			--coverage-html ${phpunit_dir_name}/coverage/html
+			--log-junit ${phpunit_dir_name}/junit.xml
+		"/>
+	</target>
+
+	<target name="phpdoc">
+		<mkdir dir="${phpdoc_dir_name}" />
+		<exec dir="." command="
+			phpdoc
+			-d fuel/app/
+			-t ${phpdoc_dir_name}/
+		"/>
+	</target>
+
+	<target name="phpmd">
+		<mkdir dir="${phpmd_dir_name}" />
+		<exec dir="." command="
+			phpmd
+			fuel/app/
+			xml
+			codesize,controversial,design,naming,unusedcode
+			--reportfile ${phpmd_dir_name}/pmd.xml
+		"/>
+	</target>
+
+	<target name="phpcpd">
+		<mkdir dir="${phpcpd_dir_name}" />
+		<exec dir="." command="
+			phpcpd
+			--log-pmd ${phpcpd_dir_name}/cpd.xml
+			fuel/app/
+		"/>
+	</target>
+
+	<target name="all" depends="init,phpunit,phpdoc,phpmd,phpcpd" />
+
+</project>
