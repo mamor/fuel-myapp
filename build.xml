@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <project name="FuelPHP Project" basedir="." default="all">
 
-  <property name="phing_dir_name" value="phing" />
+	<property name="phing_dir_name" value="phing" />
 	<property name="phpunit_dir_name" value="${phing_dir_name}/phpunit" />
 	<property name="phpdoc_dir_name" value="${phing_dir_name}/phpdoc" />
 	<property name="phpmd_dir_name" value="${phing_dir_name}/phpmd" />
