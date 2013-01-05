@@ -37,7 +37,7 @@
 			phpmd
 			fuel/app/
 			xml
-			codesize,controversial,design,naming,unusedcode
+			codesize,design,naming,unusedcode
 			--reportfile ${phpmd_dir_name}/pmd.xml
 		"/>
 	</target>
