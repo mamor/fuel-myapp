@@ -6,7 +6,7 @@
 	<property name="phpdoc_dir_name" value="${phing_dir_name}/phpdoc" />
 	<property name="phpmd_dir_name" value="${phing_dir_name}/phpmd" />
 	<property name="phpcpd_dir_name" value="${phing_dir_name}/phpcpd" />
-	<property name="phpcpd_dir_name" value="${phing_dir_name}/phpcpd" />
+	<property name="phpcs_dir_name" value="${phing_dir_name}/phpcs" />
 
 	<target name="init">
 		<delete dir="${phing_dir_name}" includeemptydirs="true" />
