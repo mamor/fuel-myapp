@@ -6,6 +6,7 @@
 	<property name="phpdoc_dir_name" value="${phing_dir_name}/phpdoc" />
 	<property name="phpmd_dir_name" value="${phing_dir_name}/phpmd" />
 	<property name="phpcpd_dir_name" value="${phing_dir_name}/phpcpd" />
+	<property name="phpcpd_dir_name" value="${phing_dir_name}/phpcpd" />
 
 	<target name="init">
 		<delete dir="${phing_dir_name}" includeemptydirs="true" />
@@ -51,6 +52,16 @@
 		"/>
 	</target>
 
-	<target name="all" depends="init,phpunit,phpdoc,phpmd,phpcpd" />
+	<target name="phpcs">
+		<mkdir dir="${phpcs_dir_name}" />
+		<exec dir="." command="
+			phpcs
+			--standard=FuelPHP
+			--report-checkstyle=${phpcs_dir_name}/checkstyle.xml
+			fuel/app/
+		"/>
+	</target>
+
+	<target name="all" depends="init,phpunit,phpdoc,phpmd,phpcpd,phpcs" />
 
 </project>
