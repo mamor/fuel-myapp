@@ -7,6 +7,7 @@
 	<property name="phpmd_dir_name" value="${phing_dir_name}/phpmd" />
 	<property name="phpcpd_dir_name" value="${phing_dir_name}/phpcpd" />
 	<property name="phpcs_dir_name" value="${phing_dir_name}/phpcs" />
+	<property name="pdepend_dir_name" value="${phing_dir_name}/pdepend" />
 
 	<target name="init">
 		<delete dir="${phing_dir_name}" includeemptydirs="true" />
@@ -62,6 +63,15 @@
 		"/>
 	</target>
 
-	<target name="all" depends="init,phpunit,phpdoc,phpmd,phpcpd,phpcs" />
+	<target name="pdepend">
+		<mkdir dir="${pdepend_dir_name}" />
+		<exec dir="." command="
+			pdepend
+			--jdepend-xml=${pdepend_dir_name}/jdepend.xml
+			fuel/app/
+		"/>
+	</target>
+
+	<target name="all" depends="init,phpunit,phpdoc,phpmd,phpcpd,phpcs,pdepend" />
 
 </project>
