@@ -8,6 +8,7 @@
 	<property name="phpcpd_dir_name" value="${phing_dir_name}/phpcpd" />
 	<property name="phpcs_dir_name" value="${phing_dir_name}/phpcs" />
 	<property name="pdepend_dir_name" value="${phing_dir_name}/pdepend" />
+	<property name="phploc_dir_name" value="${phing_dir_name}/phploc" />
 
 	<target name="init">
 		<delete dir="${phing_dir_name}" includeemptydirs="true" />
@@ -72,6 +73,15 @@
 		"/>
 	</target>
 
-	<target name="all" depends="init,phpunit,phpdoc,phpmd,phpcpd,phpcs,pdepend" />
+	<target name="phploc">
+		<mkdir dir="${phploc_dir_name}" />
+		<exec dir="." command="
+			phploc
+			--log-csv ${phploc_dir_name}/plot.csv
+			fuel/app/
+		"/>
+	</target>
+
+	<target name="all" depends="init,phpunit,phpdoc,phpmd,phpcpd,phpcs,pdepend,phploc" />
 
 </project>
