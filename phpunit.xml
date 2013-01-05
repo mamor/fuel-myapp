@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <phpunit colors="true" stopOnFailure="false" bootstrap="../core/bootstrap_phpunit.php">
+
 	<php>
 		<server name="doc_root" value="../../"/>
 		<server name="app_path" value="fuel/app"/>
 		<server name="core_path" value="fuel/core"/>
 		<server name="package_path" value="fuel/packages"/>
 	</php>
+
 	<testsuites>
 		<testsuite name="core">
 			<directory suffix=".php">../core/tests</directory>
@@ -18,6 +19,7 @@
 			<directory suffix=".php">../app/tests</directory>
 		</testsuite>
 	</testsuites>
+
 	<filter>
 		<blacklist>
 			<directory suffix=".php">../core</directory>
@@ -25,4 +27,5 @@
 			<directory suffix=".php">../app/vendor</directory>
 		</blacklist>
 	</filter>
+
 </phpunit>
