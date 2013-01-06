@@ -71,7 +71,7 @@ phplocで出力されるCSVファイルの解析
 * Pre-generated JDepend File: phing/pdepend/jdepend.xml
 
 ### Archive the artifacts
-Files to archive: phing/phpdoc/,phing/phpunit/html/
+* Files to archive: phing/phpdoc/,phing/phpunit/html/
 
 ## 参考
 * [Template for Jenkins Jobs for PHP Projects](http://jenkins-php.org/)
