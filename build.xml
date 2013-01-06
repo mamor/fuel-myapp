@@ -11,6 +11,8 @@
 	<property name="phpdoc_dir_name" value="${phing_dir_name}/phpdoc" />
 
 	<property name="target_dir_name" value="fuel/app" />
+	<property name="phpcs_standard" value="FuelPHP" />
+	<property name="phpmd_rules" value="codesize,design,naming,unusedcode" />
 
 	<target name="init">
 		<delete dir="${phing_dir_name}" includeemptydirs="true" />
@@ -21,7 +23,7 @@
 		<mkdir dir="${phpcs_dir_name}" />
 		<exec dir="." command="
 			phpcs
-			--standard=FuelPHP
+			--standard=${phpcs_standard}
 			--report-checkstyle=${phpcs_dir_name}/checkstyle.xml
 			${target_dir_name}/
 		"/>
@@ -33,7 +35,7 @@
 			phpmd
 			${target_dir_name}/
 			xml
-			codesize,design,naming,unusedcode
+			${phpmd_rules}
 			--reportfile ${phpmd_dir_name}/pmd.xml
 		"/>
 	</target>
