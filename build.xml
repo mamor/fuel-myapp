@@ -2,36 +2,26 @@
 <project name="FuelPHP Project" basedir="." default="all">
 
 	<property name="phing_dir_name" value="phing" />
-	<property name="phpunit_dir_name" value="${phing_dir_name}/phpunit" />
-	<property name="phpdoc_dir_name" value="${phing_dir_name}/phpdoc" />
+	<property name="phpcs_dir_name" value="${phing_dir_name}/phpcs" />
 	<property name="phpmd_dir_name" value="${phing_dir_name}/phpmd" />
 	<property name="phpcpd_dir_name" value="${phing_dir_name}/phpcpd" />
-	<property name="phpcs_dir_name" value="${phing_dir_name}/phpcs" />
+	<property name="phpunit_dir_name" value="${phing_dir_name}/phpunit" />
 	<property name="pdepend_dir_name" value="${phing_dir_name}/pdepend" />
 	<property name="phploc_dir_name" value="${phing_dir_name}/phploc" />
+	<property name="phpdoc_dir_name" value="${phing_dir_name}/phpdoc" />
 
 	<target name="init">
 		<delete dir="${phing_dir_name}" includeemptydirs="true" />
 		<mkdir dir="${phing_dir_name}" />
 	</target>
 
-	<target name="phpunit">
-		<mkdir dir="${phpunit_dir_name}" />
+	<target name="phpcs">
+		<mkdir dir="${phpcs_dir_name}" />
 		<exec dir="." command="
-			phpunit
-			-c fuel/app/phpunit.xml
-			--coverage-html ${phpunit_dir_name}/html
-			--coverage-clover ${phpunit_dir_name}/clover.xml
-			--log-junit ${phpunit_dir_name}/junit.xml
-		"/>
-	</target>
-
-	<target name="phpdoc">
-		<mkdir dir="${phpdoc_dir_name}" />
-		<exec dir="." command="
-			phpdoc
-			-d fuel/app/
-			-t ${phpdoc_dir_name}/
+			phpcs
+			--standard=FuelPHP
+			--report-checkstyle=${phpcs_dir_name}/checkstyle.xml
+			fuel/app/
 		"/>
 	</target>
 
@@ -55,13 +45,14 @@
 		"/>
 	</target>
 
-	<target name="phpcs">
-		<mkdir dir="${phpcs_dir_name}" />
+	<target name="phpunit">
+		<mkdir dir="${phpunit_dir_name}" />
 		<exec dir="." command="
-			phpcs
-			--standard=FuelPHP
-			--report-checkstyle=${phpcs_dir_name}/checkstyle.xml
-			fuel/app/
+			phpunit
+			-c fuel/app/phpunit.xml
+			--coverage-html ${phpunit_dir_name}/html
+			--coverage-clover ${phpunit_dir_name}/clover.xml
+			--log-junit ${phpunit_dir_name}/junit.xml
 		"/>
 	</target>
 
@@ -83,6 +74,15 @@
 		"/>
 	</target>
 
-	<target name="all" depends="init,phpunit,phpdoc,phpmd,phpcpd,phpcs,pdepend,phploc" />
+	<target name="phpdoc">
+		<mkdir dir="${phpdoc_dir_name}" />
+		<exec dir="." command="
+			phpdoc
+			-d fuel/app/
+			-t ${phpdoc_dir_name}/
+		"/>
+	</target>
+
+	<target name="all" depends="init,phpcs,phpmd,phpcpd,phpunit,pdepend,phploc,phpdoc" />
 
 </project>
