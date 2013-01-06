@@ -1,16 +1,12 @@
 # Jenkinsの設定メモ
 ---
-
 ## 使用するbuild.xml
----
 [https://github.com/mp-php/fuel-myapp/blob/master/build.xml](https://github.com/mp-php/fuel-myapp/blob/master/build.xml)
 
 ## 使用するphpunit.xml
----
 [https://github.com/mp-php/fuel-myapp/blob/master/phpunit.xml](https://github.com/mp-php/fuel-myapp/blob/master/phpunit.xml)
 
 ## 必要なPHPモジュール
----
 ### PHPUnit
 
 ### Xdebug
@@ -23,7 +19,6 @@
 PHPUnitとPhingを-a(--alldeps)でインストールすれば一緒に入る
 
 ## Jenkinsで必要なプラグイン(インストール済を除く)
----
 ### xUnit Plugin
 PHPUnitで--log-junitにて出力されるXMLファイルの解析
 
@@ -46,7 +41,6 @@ PHP_Dependで出力されるXMLファイルの解析
 phplocで出力されるCSVファイルの解析
 
 ## JenkinsのPost-build Actions設定
----
 ### Checkstyle analysis results
 * Checkstyle results: phing/phpcs/checkstyle.xml
 
@@ -80,5 +74,4 @@ phplocで出力されるCSVファイルの解析
 Files to archive: phing/phpdoc/,phing/phpunit/html/
 
 ## 参考
----
-[Template for Jenkins Jobs for PHP Projects](http://jenkins-php.org/)
+* [Template for Jenkins Jobs for PHP Projects](http://jenkins-php.org/)
