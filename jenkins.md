@@ -7,23 +7,20 @@
 [https://github.com/mp-php/fuel-myapp/blob/master/phpunit.xml](https://github.com/mp-php/fuel-myapp/blob/master/phpunit.xml)
 
 ## 必要なPHPモジュール
+### Phing
+
 ### PHPUnit
 
 ### Xdebug
 
-### Phing
-
 ### phpDocumentor 2 & GraphViz
 
-### PHPMD & PHPCPD & PHP_CodeSniffer & PHP_Depend & phploc
-PHPUnitとPhingを-a(--alldeps)でインストールすれば一緒に入る
+### PHP_CodeSniffer & PHPMD & PHPCPD  & PHP_Depend & phploc
+PhingとPHPUnitを-a(--alldeps)でインストールすれば一緒に入る
 
 ## Jenkinsで必要なプラグイン(インストール済を除く)
-### xUnit Plugin
-PHPUnitで--log-junitにて出力されるXMLファイルの解析
-
-### Clover plugin
-PHPUnitで--coverage-cloverにて出力されるXMLファイルの解析
+### Checkstyle Plugin
+PHP_CodeSnifferで出力されるXMLファイルの解析
 
 ### PMD Plugin
 PHPMDで出力されるXMLファイルの解析
@@ -31,8 +28,11 @@ PHPMDで出力されるXMLファイルの解析
 ### DRY Plugin
 PHPCPDで出力されるXMLファイルの解析
 
-### Checkstyle Plugin
-PHP_CodeSnifferで出力されるXMLファイルの解析
+### Clover plugin
+PHPUnitで--coverage-cloverにて出力されるXMLファイルの解析
+
+### xUnit Plugin
+PHPUnitで--log-junitにて出力されるXMLファイルの解析
 
 ### JDepend Plugin
 PHP_Dependで出力されるXMLファイルの解析
@@ -60,15 +60,12 @@ phplocで出力されるCSVファイルの解析
 * Pattern: phing/phpunit/junit.xml
 
 ### Report JDepend
-* Pre-generated JDepend File:
+* Pre-generated JDepend File: phing/pdepend/jdepend.xml
 
 ### Plot build data
 * Plot group: 任意な値
 * Data series file: phing/phploc/plot.csv
 * Load data from csv fileを選択
-
-### Report JDepend
-* Pre-generated JDepend File: phing/pdepend/jdepend.xml
 
 ### Archive the artifacts
 * Files to archive: phing/phpdoc/,phing/phpunit/html/
