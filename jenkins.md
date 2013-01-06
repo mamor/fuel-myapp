@@ -51,7 +51,7 @@ phplocで出力されるCSVファイルの解析
 * Duplicate code results: phing/phpcpd/cpd.xml
 
 ### Publish Clover Coverage Report
-* Clover report directory: phpunit/clover/coverage/
+* Clover report directory: phing/phpunit
 
 ### Publish Javadoc
 * Javadoc directory: phing/phpdoc
