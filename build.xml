@@ -10,6 +10,8 @@
 	<property name="phploc_dir_name" value="${phing_dir_name}/phploc" />
 	<property name="phpdoc_dir_name" value="${phing_dir_name}/phpdoc" />
 
+	<property name="target_dir_name" value="fuel/app" />
+
 	<target name="init">
 		<delete dir="${phing_dir_name}" includeemptydirs="true" />
 		<mkdir dir="${phing_dir_name}" />
@@ -21,7 +23,7 @@
 			phpcs
 			--standard=FuelPHP
 			--report-checkstyle=${phpcs_dir_name}/checkstyle.xml
-			fuel/app/
+			${target_dir_name}/
 		"/>
 	</target>
 
@@ -29,7 +31,7 @@
 		<mkdir dir="${phpmd_dir_name}" />
 		<exec dir="." command="
 			phpmd
-			fuel/app/
+			${target_dir_name}/
 			xml
 			codesize,design,naming,unusedcode
 			--reportfile ${phpmd_dir_name}/pmd.xml
@@ -41,7 +43,7 @@
 		<exec dir="." command="
 			phpcpd
 			--log-pmd ${phpcpd_dir_name}/cpd.xml
-			fuel/app/
+			${target_dir_name}/
 		"/>
 	</target>
 
@@ -49,7 +51,7 @@
 		<mkdir dir="${phpunit_dir_name}" />
 		<exec dir="." command="
 			phpunit
-			-c fuel/app/phpunit.xml
+			-c ${target_dir_name}/phpunit.xml
 			--coverage-html ${phpunit_dir_name}/html
 			--coverage-clover ${phpunit_dir_name}/clover.xml
 			--log-junit ${phpunit_dir_name}/junit.xml
@@ -61,7 +63,7 @@
 		<exec dir="." command="
 			pdepend
 			--jdepend-xml=${pdepend_dir_name}/jdepend.xml
-			fuel/app/
+			${target_dir_name}/
 		"/>
 	</target>
 
@@ -70,7 +72,7 @@
 		<exec dir="." command="
 			phploc
 			--log-csv ${phploc_dir_name}/plot.csv
-			fuel/app/
+			${target_dir_name}/
 		"/>
 	</target>
 
@@ -78,7 +80,7 @@
 		<mkdir dir="${phpdoc_dir_name}" />
 		<exec dir="." command="
 			phpdoc
-			-d fuel/app/
+			-d ${target_dir_name}/
 			-t ${phpdoc_dir_name}/
 		"/>
 	</target>
