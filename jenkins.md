@@ -19,6 +19,12 @@
 PhingとPHPUnitを-a(--alldeps)でインストールすれば一緒に入る
 
 ## Jenkinsで必要なプラグイン(インストール済を除く)
+### Git Plugin
+Git関係
+
+### Phing Plugin
+Phingを使用するのに必要
+
 ### Checkstyle Plugin
 PHP_CodeSnifferで出力されるXMLファイルの解析
 
