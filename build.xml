@@ -9,6 +9,7 @@
 	<property name="pdepend_dir_name" value="${phing_dir_name}/pdepend" />
 	<property name="phploc_dir_name" value="${phing_dir_name}/phploc" />
 	<property name="phpdoc_dir_name" value="${phing_dir_name}/phpdoc" />
+	<property name="zip_dir_name" value="${phing_dir_name}/zip" />
 
 	<property name="target_dir_name" value="fuel/app" />
 	<property name="phpcs_standard" value="FuelPHP" />
@@ -87,6 +88,13 @@
 		"/>
 	</target>
 
-	<target name="all" depends="init,phpcs,phpmd,phpcpd,phpunit,pdepend,phploc,phpdoc" />
+	<target name="zip">
+		<mkdir dir="${zip_dir_name}/tmp" />
+		<exec dir="." command="cp -r ${phpunit_dir_name}/html/ ${zip_dir_name}/tmp/coverage" />
+		<exec dir="./${phing_dir_name}/" command="zip -r $WORKSPACE/${zip_dir_name}/phpdoc.zip phpdoc" />
+		<exec dir="./${zip_dir_name}/tmp/" command="zip -r $WORKSPACE/${zip_dir_name}/coverage.zip coverage" />
+	</target>
+
+	<target name="all" depends="init,phpcs,phpmd,phpcpd,phpunit,pdepend,phploc,phpdoc,zip" />
 
 </project>

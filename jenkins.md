@@ -16,35 +16,36 @@
 ### phpDocumentor 2 & GraphViz
 
 ### PHP_CodeSniffer & PHPMD & PHPCPD  & PHP_Depend & phploc
-PhingとPHPUnitを-a(--alldeps)でインストールすれば一緒に入る
+* PhingとPHPUnitを-a(--alldeps)でインストールすれば一緒に入っていた
 
 ## Jenkinsで必要なプラグイン(インストール済を除く)
 ### Git Plugin
 Git関係
+* 前述のbuild.xmlでは不要
 
 ### Phing Plugin
-Phingを使用するのに必要
+* Phingを使用するのに必要
 
 ### Checkstyle Plugin
-PHP_CodeSnifferで出力されるXMLファイルの解析
+* PHP_CodeSnifferで出力されるXMLファイルの解析
 
 ### PMD Plugin
-PHPMDで出力されるXMLファイルの解析
+* PHPMDで出力されるXMLファイルの解析
 
 ### DRY Plugin
-PHPCPDで出力されるXMLファイルの解析
+* PHPCPDで出力されるXMLファイルの解析
 
 ### Clover plugin
-PHPUnitで--coverage-cloverにて出力されるXMLファイルの解析
+* PHPUnitで--coverage-cloverにて出力されるXMLファイルの解析
 
 ### xUnit Plugin
-PHPUnitで--log-junitにて出力されるXMLファイルの解析
+* PHPUnitで--log-junitにて出力されるXMLファイルの解析
 
 ### JDepend Plugin
-PHP_Dependで出力されるXMLファイルの解析
+* PHP_Dependで出力されるXMLファイルの解析
 
 ### Plot Plugin
-phplocで出力されるCSVファイルの解析
+* phplocで出力されるCSVファイルの解析
 
 ## JenkinsのPost-build Actions設定
 ### Checkstyle analysis results
@@ -74,7 +75,7 @@ phplocで出力されるCSVファイルの解析
 * Load data from csv fileを選択
 
 ### Archive the artifacts
-* Files to archive: phing/phpdoc/,phing/phpunit/html/
+* Files to archive: phing/zip/phpdoc.zip,phing/zip/coverage.zip
 
 ## 参考
 * [Template for Jenkins Jobs for PHP Projects](http://jenkins-php.org/)
