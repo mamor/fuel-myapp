@@ -91,8 +91,8 @@
 	<target name="zip">
 		<mkdir dir="${zip_dir_name}/tmp" />
 		<exec dir="." command="cp -r ${phpunit_dir_name}/html/ ${zip_dir_name}/tmp/coverage" />
-		<exec dir="./${phing_dir_name}/" command="zip -r $WORKSPACE/${zip_dir_name}/phpdoc.zip phpdoc" />
 		<exec dir="./${zip_dir_name}/tmp/" command="zip -r $WORKSPACE/${zip_dir_name}/coverage.zip coverage" />
+		<exec dir="./${phing_dir_name}/" command="zip -r $WORKSPACE/${zip_dir_name}/phpdoc.zip phpdoc" />
 	</target>
 
 	<target name="all" depends="init,phpcs,phpmd,phpcpd,phpunit,pdepend,phploc,phpdoc,zip" />
