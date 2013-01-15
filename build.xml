@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project name="FuelPHP Project" basedir="." default="all">
 
+	<!-- Don't change me. -->
 	<property name="phing_dir_name" value="phing" />
 	<property name="phpcs_dir_name" value="${phing_dir_name}/phpcs" />
 	<property name="phpmd_dir_name" value="${phing_dir_name}/phpmd" />
@@ -11,6 +12,7 @@
 	<property name="phpdoc_dir_name" value="${phing_dir_name}/phpdoc" />
 	<property name="zip_dir_name" value="${phing_dir_name}/zip" />
 
+	<!-- Change me. -->
 	<property name="target_dir_name" value="fuel/app" />
 	<property name="phpcs_standard" value="FuelPHP" />
 	<property name="phpmd_rules" value="codesize,design,naming,unusedcode" />
