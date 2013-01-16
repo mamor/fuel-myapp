@@ -21,11 +21,12 @@
 	</testsuites>
 
 	<filter>
-		<blacklist>
-			<directory suffix=".php">../core</directory>
-			<directory suffix=".php">../packages</directory>
-			<directory suffix=".php">../app/vendor</directory>
-		</blacklist>
+		<whitelist>
+			<directory suffix=".php">../app/classes</directory>
+			<exclude>
+				<directory suffix=".php">../app/classes/controller</directory>
+			</exclude>
+		</whitelist>
 	</filter>
 
 </phpunit>
