@@ -14,6 +14,7 @@ $_SERVER['doc_root'] = '../../';
 $_SERVER['app_path'] = 'fuel/app';
 $_SERVER['core_path'] = 'fuel/core';
 $_SERVER['package_path'] = 'fuel/packages';
+$_SERVER['FUEL_ENV'] = 'test';
 
 $app_path		= trim($_SERVER['app_path'], '/').'/';
 $package_path	= trim($_SERVER['package_path'], '/').'/';
