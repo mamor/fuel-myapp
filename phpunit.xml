@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit colors="true" stopOnFailure="false" bootstrap="../core/bootstrap_phpunit.php">
+<phpunit colors="true" stopOnFailure="false" bootstrap="../app/bootstrap_makegood.php">
 
 	<php>
 		<server name="doc_root" value="../../"/>
