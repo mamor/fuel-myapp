@@ -49,11 +49,11 @@ Fuel::$is_test = true;
 // Merge config
 foreach (Config::get('merge_development_config_names', array()) as $name)
 {
-  $config[$name] = include APPPATH.'config'.DS.\Fuel::DEVELOPMENT.DS.$name.'.php';
+  $config[$name] = include APPPATH.'config'.DS.Fuel::DEVELOPMENT.DS.$name.'.php';
   if ( ! empty($config[$name]))
   {
-    \Config::load($name, true);
-    \Config::set($name, Arr::merge(\Config::get($name), $config[$name]));
+    Config::load($name, true);
+    Config::set($name, Arr::merge(Config::get($name), $config[$name]));
   }
 }
 
