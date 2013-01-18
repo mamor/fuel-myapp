@@ -39,7 +39,6 @@ defined('FUEL_START_TIME') or define('FUEL_START_TIME', microtime(true));
 defined('FUEL_START_MEM') or define('FUEL_START_MEM', memory_get_usage());
 
 // Boot the app
-$_SERVER['FUEL_ENV'] = 'test'; // For load test/config.php
 require_once APPPATH.'bootstrap.php';
 
 // Set the environment to TEST
