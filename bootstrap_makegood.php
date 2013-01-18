@@ -46,6 +46,7 @@ Fuel::$env = Fuel::TEST;
 Fuel::$is_test = true;
 
 // Merge config
+$config = array();
 foreach (Config::get('merge_development_config_names', array()) as $name)
 {
 	$config = @include APPPATH.'config'.DS.Fuel::DEVELOPMENT.DS.$name.'.php';
