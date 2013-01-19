@@ -149,7 +149,8 @@ METHOD_FMT;
 
 		$contents_fmt = sprintf($class_fmt, $class_name, sprintf(static::$class_name_fmt, $class_name));
 
-		$methods = array_diff(get_class_methods($class_name), get_class_methods(get_parent_class($class_name)));
+		$methods = static::get_subclass_methods($class_name);
+//		$methods = array_diff(get_class_methods($class_name), get_class_methods(get_parent_class($class_name)));
 		$method_str = '';
 
 		foreach ($methods as $method)
@@ -167,6 +168,20 @@ METHOD_FMT;
 		}
 
 		return sprintf($contents_fmt, $method_str);
+	}
+
+	private static function get_subclass_methods($class_name)
+	{
+		$rc = new \ReflectionClass($class_name);
+		$rm = $rc->getMethods(\ReflectionMethod::IS_PUBLIC);
+
+		$methods = array();
+		foreach ($rm as $method)
+		{
+			$method->class === $class_name and $methods[] = $method->name;
+		}
+
+		return $methods;
 	}
 
 	/**
