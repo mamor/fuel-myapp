@@ -16,21 +16,19 @@
  * @copyright  2012 Kenji Suzuki
  * @link       https://github.com/kenjis/fuelphp1st
  */
-
-
 abstract class DbTestCase extends TestCase
 {
 	protected static $reload = false;
 
 	// フィクスチャデータ
 	protected $tables = array(
-					// テーブル名 => ファイル名
-			  );
-	
+		// テーブル名 => ファイル名
+	);
+
 	protected function setUp()
 	{
 		parent::setUp();
-		
+
 		if ( ! empty($this->tables))
 		{
 			$this->dbfixt($this->tables);
@@ -44,7 +42,7 @@ abstract class DbTestCase extends TestCase
 		Database_Connection::$instances = array();
 		Database_Connection::instance(DbFixture::$active, $config[DbFixture::$active]);
 	}
-	
+
 	protected function tearDown()
 	{
 		Config::set(DbFixture::$active.'.table_prefix', DbFixture::$table_prefix);
@@ -56,7 +54,7 @@ abstract class DbTestCase extends TestCase
 	{
 		// $this->dbfixt('table1', 'table2', ...)という形式もサポート
 		$tables = is_string($tables) ? func_get_args() : $tables;
-		
+
 		foreach ($tables as $table => $file)
 		{
 			$fixt_name = $file . '_fixt';
