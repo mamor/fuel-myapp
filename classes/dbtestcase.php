@@ -45,7 +45,13 @@ abstract class DbTestCase extends TestCase
 
 	protected function tearDown()
 	{
-		Config::set(DbFixture::$active.'.table_prefix', DbFixture::$table_prefix);
+		$config = Config::get('db');
+		Config::delete('db');
+		$config[DbFixture::$active]['table_prefix'] = DbFixture::$table_prefix;
+		Config::set('db', $config);
+
+		Database_Connection::$instances = array();
+		Database_Connection::instance(DbFixture::$active, $config[DbFixture::$active]);
 
 		parent::tearDown();
 	}
