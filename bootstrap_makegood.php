@@ -56,7 +56,7 @@ foreach (Config::get('merge_development_config_names', array()) as $name)
 		Config::set($name, Arr::merge(Config::get($name), $config));
 	}
 }
-unset($config);
+unset($name, $config);
 
 // Import the TestCase class
 import('testcase');
