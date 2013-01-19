@@ -14,6 +14,7 @@ $_SERVER['doc_root'] = '../../';
 $_SERVER['app_path'] = 'fuel/app';
 $_SERVER['core_path'] = 'fuel/core';
 $_SERVER['package_path'] = 'fuel/packages';
+$_SERVER['FUEL_ENV'] = 'test';
 
 $app_path		= trim($_SERVER['app_path'], '/').'/';
 $package_path	= trim($_SERVER['package_path'], '/').'/';
@@ -41,8 +42,7 @@ defined('FUEL_START_MEM') or define('FUEL_START_MEM', memory_get_usage());
 // Boot the app
 require_once APPPATH.'bootstrap.php';
 
-// Set the environment to TEST
-Fuel::$env = Fuel::TEST;
+// Set test mode
 Fuel::$is_test = true;
 
 // Merge config
