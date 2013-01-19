@@ -5,7 +5,7 @@ namespace Fuel\Tasks;
  * Generate test cases.
  *
  * @author    Mamoru Otsuka http://madroom-project.blogspot.jp/
- * @copyright 2012 Mamoru Otsuka
+ * @copyright 2013 Mamoru Otsuka
  * @license   MIT License http://www.opensource.org/licenses/mit-license.php
  * 
  * Use a part of https://github.com/kenjis/fuelphp-tools/blob/master/app/tasks/generate.php
