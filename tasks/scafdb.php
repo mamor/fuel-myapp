@@ -20,6 +20,13 @@ class Scafdb
 		'migration',
 	);
 
+	public function __construct()
+	{
+		\Cli::write('Notice:', 'yellow');
+		\Cli::write('If you use v1.5+, you can use the task "fromdb" instead of this.', 'yellow');
+		\Cli::write('Let\'s try the command "php oil r fromdb:help"', 'yellow');
+	}
+
 	/**
 	 * Show help.
 	 *
