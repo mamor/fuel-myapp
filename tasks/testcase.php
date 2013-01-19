@@ -1,5 +1,6 @@
 <?php
 namespace Fuel\Tasks;
+include_once('PHPUnit/Autoload.php');
 
 /**
  * Generate test cases.
@@ -91,7 +92,16 @@ HELP;
 			}
 
 			$basename = basename($file, '.php');
-			$class_name = \Inflector::words_to_upper(str_replace(DS, '_', $dir.$basename));
+
+			if ($dir == DS)
+			{
+				$class_name = \Inflector::words_to_upper($basename);			
+			}
+			else
+			{
+				$class_name = \Inflector::words_to_upper(str_replace(DS, '_', $dir.$basename));			
+			}
+
 			$file_name = sprintf(static::$file_name_fmt, $basename).'.php';
 
 			// Generate test case
@@ -100,11 +110,11 @@ HELP;
 				$contents = static::get_contents($class_name);
 				\File::create(static::$tests_dir.$dir, $file_name, $contents);
 
-				\Cli::write('"'.static::$tests_dir.$dir.$file_name.'"'.' was generated.', 'green');
+				\Cli::write('"'.rtrim(static::$tests_dir.$dir, '/').'/'.$file_name.'"'.' was generated.', 'green');
 			}
 			else
 			{
-				\Cli::write('"'.static::$tests_dir.$dir.$file_name.'"'.' already exists, skipped generation.');
+				\Cli::write('"'.rtrim(static::$tests_dir.$dir, '/').'/'.$file_name.'"'.' already exists, skipped generation.');
 			}
 
 		}
@@ -125,6 +135,16 @@ HELP;
  */
 class %s extends TestCase
 {
+
+	protected function setUp()
+	{
+		parent::setUp();
+	}
+
+	protected function tearDown()
+	{
+		parent::tearDown();
+	}
 %%s
 }
 
