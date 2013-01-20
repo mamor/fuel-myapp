@@ -33,7 +33,7 @@ https://github.com/kenjis/fuelphp1st/blob/master/sample-code/10/fuel_form_db/cla
 各種設定ファイルの雛形です。
 
 ## tasks/coverage.php
-ユニットテストを実行してカバレッジレポートを出力するタスクです。
+ユニットテストを実行してカバレッジレポートを生成するタスクです。
 
 ## tasks/generate.php
 自動補完用のファイルを生成するタスクです。  
