@@ -5,7 +5,7 @@ namespace Fuel\Tasks;
  * Generate scaffold or model for database tables.
  *
  * @author     Mamoru Otsuka http://madroom-project.blogspot.jp/
- * @copyright  2012 Mamoru Otsuka
+ * @copyright  2013 Mamoru Otsuka
  * @license    WTFPL http://sam.zoy.org/wtfpl/COPYING
  */
 class Scafdb

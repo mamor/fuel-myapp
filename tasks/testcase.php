@@ -13,8 +13,6 @@ include_once('PHPUnit/Autoload.php');
  * @author    Kenji Suzuki https://github.com/kenjis
  * @copyright 2012 Kenji Suzuki
  * @license   MIT License http://www.opensource.org/licenses/mit-license.php
- * 
- * 
  */
 class Testcase
 {
