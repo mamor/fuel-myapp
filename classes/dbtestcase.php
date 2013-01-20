@@ -34,6 +34,7 @@ abstract class DbTestCase extends TestCase
 			$this->dbfixt($this->tables);
 		}
 
+		// DB設定をリフレッシュしてユニットテスト用のテーブルプレフィックスを設定
 		$config = Config::get('db');
 		Config::delete('db');
 		$config[DbFixture::$active]['table_prefix'] = DbFixture::$phpunit_table_prefix;
@@ -45,6 +46,7 @@ abstract class DbTestCase extends TestCase
 
 	protected function tearDown()
 	{
+		// DB設定をリフレッシュしてテーブルプレフィックスを元に戻す
 		$config = Config::get('db');
 		Config::delete('db');
 		$config[DbFixture::$active]['table_prefix'] = DbFixture::$table_prefix;

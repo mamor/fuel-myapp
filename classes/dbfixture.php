@@ -18,10 +18,16 @@
  */
 class DbFixture
 {
+	// DBコネクション
 	public static $active;
+
+	// テーブルプレフィックス
 	public static $table_prefix;
+
+	// ユニットテストで使用するテーブルプレフィックス
 	public static $phpunit_table_prefix;
 
+	// 初期化
 	public static function _init()
 	{
 		Config::load('db', true);
@@ -35,6 +41,7 @@ class DbFixture
 	protected static $file_type = 'yaml';
 	protected static $file_ext  = 'yml';
 
+	// static::load()が実行済か
 	protected static $loaded = false;
 
 	public static function load($table, $file, $reload = false)
@@ -45,6 +52,7 @@ class DbFixture
 		}
 		static::$loaded = true;
 
+		// ユニットテスト用にテーブルを複製
 		static::create_table_like($table);
 		$table = static::$phpunit_table_prefix.$table;
 
@@ -97,6 +105,7 @@ class DbFixture
 		}
 	}
 
+	// ユニットテスト用にテーブルを複製
 	protected static function create_table_like($table)
 	{
 		$from_table = static::$table_prefix.$table;
