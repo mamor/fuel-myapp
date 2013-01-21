@@ -49,7 +49,7 @@ class DbFixture
 
 		$fixt_name = $file . '_fixt';
 		$file_name = $fixt_name . '.' . static::$file_ext;
-		$fixt_file = APPPATH . 'tests/fixture/' . $file_name;
+		$fixt_file = APPPATH . 'tests/_fixture/' . $file_name;
 
 		if ( ! file_exists($fixt_file))
 		{
