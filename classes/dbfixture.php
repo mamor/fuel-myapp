@@ -75,7 +75,7 @@ class DbFixture
 		// フィクスチャデータの挿入
 		foreach ($data as $row)
 		{
-			if ( !is_array($row))
+			if ( ! is_array($row))
 			{
 				continue;
 			}
