@@ -1,7 +1,7 @@
 <?php
 
 // Load the PUPUnit Autoloader
-include_once 'PHPUnit/Autoload.php';
+include_once('PHPUnit/Autoload.php');
 
 /**
  * Set error reporting and display errors settings.  You will want to change these when in production.
@@ -16,9 +16,9 @@ $_SERVER['core_path'] = 'fuel/core';
 $_SERVER['package_path'] = 'fuel/packages';
 $_SERVER['FUEL_ENV'] = 'test';
 
-$app_path		= trim($_SERVER['app_path'], '/').'/';
-$package_path	= trim($_SERVER['package_path'], '/').'/';
-$core_path		= trim($_SERVER['core_path'], '/').'/';
+$app_path		= rtrim($_SERVER['app_path'], '/').'/';
+$package_path	= rtrim($_SERVER['package_path'], '/').'/';
+$core_path		= rtrim($_SERVER['core_path'], '/').'/';
 
 /**
  * Website docroot
