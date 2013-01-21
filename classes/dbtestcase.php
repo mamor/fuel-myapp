@@ -32,28 +32,31 @@ abstract class DbTestCase extends TestCase
 		if ( ! empty($this->tables))
 		{
 			$this->dbfixt($this->tables);
+
+			// DB設定をリフレッシュしてユニットテスト用のテーブルプレフィックスを設定
+			$config = Config::get('db');
+			Config::delete('db');
+			$config[DbFixture::$active]['table_prefix'] = DbFixture::$phpunit_table_prefix;
+			Config::set('db', $config);
+
+			Database_Connection::$instances = array();
+			Database_Connection::instance(DbFixture::$active, $config[DbFixture::$active]);
 		}
-
-		// DB設定をリフレッシュしてユニットテスト用のテーブルプレフィックスを設定
-		$config = Config::get('db');
-		Config::delete('db');
-		$config[DbFixture::$active]['table_prefix'] = DbFixture::$phpunit_table_prefix;
-		Config::set('db', $config);
-
-		Database_Connection::$instances = array();
-		Database_Connection::instance(DbFixture::$active, $config[DbFixture::$active]);
 	}
 
 	protected function tearDown()
 	{
-		// DB設定をリフレッシュしてテーブルプレフィックスを元に戻す
-		$config = Config::get('db');
-		Config::delete('db');
-		$config[DbFixture::$active]['table_prefix'] = DbFixture::$table_prefix;
-		Config::set('db', $config);
+		if ( ! empty($this->tables))
+		{
+			// DB設定をリフレッシュしてテーブルプレフィックスを元に戻す
+			$config = Config::get('db');
+			Config::delete('db');
+			$config[DbFixture::$active]['table_prefix'] = DbFixture::$table_prefix;
+			Config::set('db', $config);
 
-		Database_Connection::$instances = array();
-		Database_Connection::instance(DbFixture::$active, $config[DbFixture::$active]);
+			Database_Connection::$instances = array();
+			Database_Connection::instance(DbFixture::$active, $config[DbFixture::$active]);
+		}
 
 		parent::tearDown();
 	}
