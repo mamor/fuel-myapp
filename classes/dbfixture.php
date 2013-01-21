@@ -25,7 +25,10 @@ class DbFixture
 	public static $table_prefix;
 
 	// ユニットテストで使用するテーブルプレフィックス
-	public static $phpunit_table_prefix;
+	public static $test_table_prefix;
+
+	// コピー済テーブル一覧
+	protected static $copied;
 
 	// 初期化
 	public static function _init()
@@ -34,7 +37,8 @@ class DbFixture
 
 		static::$active = Config::get('db.active');
 		static::$table_prefix = Config::get('db.'.static::$active.'.table_prefix');
-		static::$phpunit_table_prefix = '_phpunit_'.static::$table_prefix;
+		static::$test_table_prefix = '_test_'.static::$table_prefix;
+		static $copied = array();
 	}
 
 	// フィクスチャファイルの形式
@@ -44,8 +48,12 @@ class DbFixture
 	public static function load($table, $file)
 	{
 		// ユニットテスト用にテーブルを複製
-		static::create_table_like($table);
-		$table = static::$phpunit_table_prefix.$table;
+		if (empty(static::$copied[$table]))
+		{
+			static::$copied[$table] = true;
+			static::create_table_like($table);
+		}
+		$table = static::$test_table_prefix.$table;
 
 		$fixt_name = $file . '_fixt';
 		$file_name = $fixt_name . '.' . static::$file_ext;
@@ -100,7 +108,7 @@ class DbFixture
 	protected static function create_table_like($table)
 	{
 		$from_table = static::$table_prefix.$table;
-		$to_table = static::$phpunit_table_prefix.$table;
+		$to_table = static::$test_table_prefix.$table;
 
 		$sql = "drop table if exists {$to_table}";
 		DB::query($sql)->execute();

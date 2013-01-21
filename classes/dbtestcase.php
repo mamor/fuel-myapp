@@ -34,7 +34,7 @@ abstract class DbTestCase extends TestCase
 			// DB設定をリフレッシュしてユニットテスト用のテーブルプレフィックスを設定
 			$config = Config::get('db');
 			Config::delete('db');
-			$config[DbFixture::$active]['table_prefix'] = DbFixture::$phpunit_table_prefix;
+			$config[DbFixture::$active]['table_prefix'] = DbFixture::$test_table_prefix;
 			Config::set('db', $config);
 
 			Database_Connection::$instances = array();
