@@ -34,24 +34,15 @@ class DbFixture
 
 		static::$active = Config::get('db.active');
 		static::$table_prefix = Config::get('db.'.static::$active.'.table_prefix');
-		static::$phpunit_table_prefix = 'phpunit_'.static::$table_prefix;
+		static::$phpunit_table_prefix = '_phpunit_'.static::$table_prefix;
 	}
 
 	// フィクスチャファイルの形式
 	protected static $file_type = 'yaml';
 	protected static $file_ext  = 'yml';
 
-	// static::load()が実行済か
-	protected static $loaded = false;
-
-	public static function load($table, $file, $reload = false)
+	public static function load($table, $file)
 	{
-		if ( ! $reload and static::$loaded)
-		{
-			return;
-		}
-		static::$loaded = true;
-
 		// ユニットテスト用にテーブルを複製
 		static::create_table_like($table);
 		$table = static::$phpunit_table_prefix.$table;

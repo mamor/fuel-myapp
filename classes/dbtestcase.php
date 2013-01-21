@@ -18,8 +18,6 @@
  */
 abstract class DbTestCase extends TestCase
 {
-	protected static $reload = false;
-
 	// フィクスチャデータ
 	protected $tables = array(
 		// テーブル名 => ファイル名
@@ -69,7 +67,7 @@ abstract class DbTestCase extends TestCase
 		foreach ($tables as $table => $file)
 		{
 			$fixt_name = $file . '_fixt';
-			$this->$fixt_name = DbFixture::load($table, $file, static::$reload);
+			$this->$fixt_name = DbFixture::load($table, $file);
 		}
 	}
 }
