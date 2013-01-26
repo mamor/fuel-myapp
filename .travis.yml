@@ -1,0 +1,13 @@
+language: php
+
+php:
+  - 5.3
+  - 5.4
+  - 5.5
+
+before_script:
+  - mysql -e 'create database fuel_test;'
+
+script:
+  - FUEL_ENV=test php oil r migrate
+  - phpunit --coverage-text -c fuel/app/phpunit.xml
