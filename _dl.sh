@@ -11,6 +11,7 @@ wget -N -P ${APPPATH} https://raw.github.com/mp-php/fuel-myapp/master/phpunit.xm
 
 wget -N -P ${APPPATH}classes/ https://raw.github.com/mp-php/fuel-myapp/master/classes/dbfixture.php --no-check-certificate
 wget -N -P ${APPPATH}classes/ https://raw.github.com/mp-php/fuel-myapp/master/classes/dbtestcase.php --no-check-certificate
+wget -N -P ${APPPATH}classes/ https://raw.github.com/mp-php/fuel-myapp/master/classes/functionaltestcase.php --no-check-certificate
 
 wget -N -P ${APPPATH}config/ https://raw.github.com/mp-php/fuel-myapp/master/config/config.php --no-check-certificate
 wget -N -P ${APPPATH}config/development/ https://raw.github.com/mp-php/fuel-myapp/master/config/development/config.php --no-check-certificate
