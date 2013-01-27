@@ -15,12 +15,6 @@
 		</testsuite>
 	</testsuites>
 
-	<groups>
-		<include>
-			<group>App</group>
-		</include>
-	</groups>
-
 	<filter>
 		<whitelist>
 			<directory suffix=".php">../app/classes</directory>
