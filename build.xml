@@ -57,6 +57,7 @@
 		<exec dir="." command="
 			phpunit
 			-c ${target_dir_name}/phpunit.xml
+			--group=App
 			--coverage-html ${phpunit_dir_name}/html
 			--coverage-clover ${phpunit_dir_name}/clover.xml
 			--log-junit ${phpunit_dir_name}/junit.xml
