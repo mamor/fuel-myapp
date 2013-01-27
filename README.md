@@ -4,6 +4,9 @@
 以下のファイル(一部を除く)をwgetするスクリプトです。  
 fuel/app/_dl.shの位置で実行しています。
 
+## .travis.yml
+Travis CIで使用するファイルです。
+
 ## bootstrap_makegood.php
 ユニットテストで使用するファイルです。  
 core/bootstrap_phpunit.phpを元にしています。
