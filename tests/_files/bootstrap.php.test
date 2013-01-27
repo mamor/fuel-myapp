@@ -1,0 +1,51 @@
+<?php
+
+// Load in the Autoloader
+require COREPATH.'classes'.DIRECTORY_SEPARATOR.'autoloader.php';
+class_alias('Fuel\\Core\\Autoloader', 'Autoloader');
+
+// Bootstrap the framework DO NOT edit this
+require COREPATH.'bootstrap.php';
+
+
+Autoloader::add_classes(array(
+	// Add classes you want to override here
+	// Example: 'View' => APPPATH.'classes/view.php',
+));
+
+// Register the autoloader
+Autoloader::register();
+
+/**
+ * Your environment.  Can be set to any of the following:
+ *
+ * Fuel::DEVELOPMENT
+ * Fuel::TEST
+ * Fuel::STAGE
+ * Fuel::PRODUCTION
+ */
+Fuel::$env = (isset($_SERVER['FUEL_ENV']) ? $_SERVER['FUEL_ENV'] : Fuel::DEVELOPMENT);
+
+// Initialize the framework with the config file.
+Fuel::init('config.php');
+
+// Merge config
+$config = array();
+$config = @include APPPATH.'config'.DS.Fuel::DEVELOPMENT.DS.'config.php';
+foreach (Config::get('merge_development_configs', array()) as $key)
+{
+	Config::set($key, $config[$key]);
+}
+
+$config = array();
+foreach (Config::get('merge_development_config_names', array()) as $name)
+{
+	$config = @include APPPATH.'config'.DS.Fuel::DEVELOPMENT.DS.$name.'.php';
+	if ( ! empty($config))
+	{
+		Config::load($name, true);
+		Config::set($name, Arr::merge(Config::get($name), $config));
+	}
+}
+unset($name, $config);
+Config::set('db.default.table_prefix', '_test_');
