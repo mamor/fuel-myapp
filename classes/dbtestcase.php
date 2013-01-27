@@ -18,10 +18,53 @@
  */
 abstract class DbTestCase extends TestCase
 {
+	// DBコネクション
+	public static $active;
+
+	// テーブルプレフィックス
+	public static $table_prefix;
+
+	// ユニットテストで使用するテーブルプレフィックス
+	public static $test_table_prefix;
+
+	// コピー済テーブル一覧
+	protected static $copied;
+
 	// フィクスチャデータ
 	protected $tables = array(
 		// テーブル名 => ファイル名
 	);
+
+	public static function setUpBeforeClass()
+	{
+		Config::load('db', true);
+
+		static::$active = Config::get('db.active');
+		static::$table_prefix = Config::get('db.'.static::$active.'.table_prefix');
+		static::$test_table_prefix = '_test_'.static::$table_prefix;
+		static $copied = array();
+
+		// DB設定をリフレッシュしてユニットテスト用のテーブルプレフィックスを設定
+		$config = Config::get('db');
+		Config::delete('db');
+		$config[static::$active]['table_prefix'] = static::$test_table_prefix;
+		Config::set('db', $config);
+
+		Database_Connection::$instances = array();
+		Database_Connection::instance(static::$active, $config[static::$active]);
+	}
+
+	public static function tearDownAfterClass()
+	{
+		// DB設定をリフレッシュしてテーブルプレフィックスを元に戻す
+		$config = Config::get('db');
+		Config::delete('db');
+		$config[static::$active]['table_prefix'] = static::$table_prefix;
+		Config::set('db', $config);
+
+		Database_Connection::$instances = array();
+		Database_Connection::instance(static::$active, $config[static::$active]);
+	}
 
 	protected function setUp()
 	{
@@ -30,33 +73,7 @@ abstract class DbTestCase extends TestCase
 		if ( ! empty($this->tables))
 		{
 			$this->dbfixt($this->tables);
-
-			// DB設定をリフレッシュしてユニットテスト用のテーブルプレフィックスを設定
-			$config = Config::get('db');
-			Config::delete('db');
-			$config[DbFixture::$active]['table_prefix'] = DbFixture::$test_table_prefix;
-			Config::set('db', $config);
-
-			Database_Connection::$instances = array();
-			Database_Connection::instance(DbFixture::$active, $config[DbFixture::$active]);
 		}
-	}
-
-	protected function tearDown()
-	{
-		if ( ! empty($this->tables))
-		{
-			// DB設定をリフレッシュしてテーブルプレフィックスを元に戻す
-			$config = Config::get('db');
-			Config::delete('db');
-			$config[DbFixture::$active]['table_prefix'] = DbFixture::$table_prefix;
-			Config::set('db', $config);
-
-			Database_Connection::$instances = array();
-			Database_Connection::instance(DbFixture::$active, $config[DbFixture::$active]);
-		}
-
-		parent::tearDown();
 	}
 
 	protected function dbfixt($tables)
@@ -66,8 +83,28 @@ abstract class DbTestCase extends TestCase
 
 		foreach ($tables as $table => $file)
 		{
+			if (empty(static::$copied[$table]))
+			{
+				static::$copied[$table] = true;
+				static::create_table_like($table);
+			}
+
 			$fixt_name = $file . '_fixt';
 			$this->$fixt_name = DbFixture::load($table, $file);
 		}
 	}
+
+	// ユニットテスト用にテーブルを複製
+	protected static function create_table_like($table)
+	{
+		$from_table = static::$table_prefix.$table;
+		$to_table = static::$test_table_prefix.$table;
+
+		$sql = "drop table if exists {$to_table}";
+		DB::query($sql)->execute();
+
+		$sql = "create table if not exists {$to_table} like {$from_table}";
+		DB::query($sql)->execute();
+	}
+
 }
