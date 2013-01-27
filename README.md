@@ -32,6 +32,11 @@ DBを伴うユニットテストクラスで使用するファイルです。
 電子書籍『はじめてのフレームワークとしてのFuelPHP』の一部を元にしています。  
 https://github.com/kenjis/fuelphp1st/blob/master/sample-code/10/fuel_form_db/classes/dbtestcase.php
 
+## classes/functionaltestcase.php
+ファンクショナルテストクラスで使用するファイルです。  
+電子書籍『はじめてのフレームワークとしてのFuelPHP』の一部を元にしています。  
+https://github.com/kenjis/fuelphp1st/blob/master/sample-code/09/fuel_form/classes/functionaltestcase.php
+
 ## config/
 各種設定ファイルの雛形です。
 
