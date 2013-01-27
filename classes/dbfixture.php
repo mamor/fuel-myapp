@@ -22,9 +22,8 @@ class DbFixture
 	protected static $file_type = 'yaml';
 	protected static $file_ext  = 'yml';
 
-	public static function load($table, $file)
+	public static function load($table, $fixt_name)
 	{
-		$fixt_name = $file . '_fixt';
 		$file_name = $fixt_name . '.' . static::$file_ext;
 		$fixt_file = APPPATH . 'tests/_fixture/' . $file_name;
 

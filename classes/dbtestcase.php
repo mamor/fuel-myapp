@@ -89,8 +89,7 @@ abstract class DbTestCase extends TestCase
 				static::create_table_like($table);
 			}
 
-			$fixt_name = $file . '_fixt';
-			$this->$fixt_name = DbFixture::load($table, $file);
+			$this->_fixt[$file] = DbFixture::load($table, $file);
 		}
 	}
 
