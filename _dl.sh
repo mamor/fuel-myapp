@@ -2,6 +2,7 @@
 
 APPPATH="./"
 
+wget -N -P ${APPPATH}../../ https://raw.github.com/mp-php/fuel-myapp/master/.gitignore.default --no-check-certificate
 wget -N -P ${APPPATH}../../ https://raw.github.com/mp-php/fuel-myapp/master/build.xml --no-check-certificate
 
 wget -N -P ${APPPATH} https://raw.github.com/mp-php/fuel-myapp/master/bootstrap_makegood.php --no-check-certificate
