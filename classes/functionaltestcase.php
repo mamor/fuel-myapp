@@ -24,6 +24,7 @@ abstract class FunctionalTestCase extends DbTestCase
 
 	protected static $client;  // Clientオブジェクト
 	protected static $crawler; // Crawlerオブジェクト
+	protected static $post;    // POSTデータ
 
 	public static function setUpBeforeClass()
 	{
@@ -73,6 +74,7 @@ abstract class FunctionalTestCase extends DbTestCase
 	{
 		static::$client  = null;
 		static::$crawler = null;
+		static::$post    = null;
 
 		// .htaccessを開発環境用に戻す
 		$htaccess = DOCROOT . 'public/.htaccess';
@@ -85,6 +87,23 @@ abstract class FunctionalTestCase extends DbTestCase
 		copy($bootstrap_develop, $bootstrap);
 
 		parent::tearDownAfterClass();
+	}
+
+	protected function dbfixt($tables)
+	{
+		// $this->dbfixt('table1', 'table2', ...)という形式もサポート
+		$tables = is_string($tables) ? func_get_args() : $tables;
+
+		foreach ($tables as $table => $file)
+		{
+			if (empty(static::$copied[$table]))
+			{
+				static::$copied[$table] = true;
+				static::create_table_like($table);
+				$this->_fixt[$file] = DbFixture::load($table, $file);
+			}
+
+		}
 	}
 
 }
