@@ -18,6 +18,7 @@
 	<filter>
 		<whitelist>
 			<directory suffix=".php">../app/classes</directory>
+			<directory suffix=".php">../app/tasks</directory>
 			<exclude>
 				<directory suffix=".php">../app/classes/controller</directory>
 			</exclude>
