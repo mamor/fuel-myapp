@@ -24,7 +24,6 @@ abstract class FunctionalTestCase extends DbTestCase
 
 	protected static $client;  // Clientオブジェクト
 	protected static $crawler; // Crawlerオブジェクト
-	protected static $post;    // POSTデータ
 
 	public static function setUpBeforeClass()
 	{
@@ -74,7 +73,6 @@ abstract class FunctionalTestCase extends DbTestCase
 	{
 		static::$client  = null;
 		static::$crawler = null;
-		static::$post    = null;
 
 		// .htaccessを開発環境用に戻す
 		$htaccess = DOCROOT . 'public/.htaccess';
