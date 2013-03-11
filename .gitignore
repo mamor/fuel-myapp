@@ -1,5 +1,15 @@
-# OS X dust
+# Mac OS X
 .DS_Store
+
+# NetBeans
+nbproject
+
+# Eclipse
+.buildpath
+.project
+.settings
+
+# FuelPHP
 fuel/app/cache
 fuel/app/config/development
 fuel/app/logs
