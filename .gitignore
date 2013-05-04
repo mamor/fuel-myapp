@@ -10,11 +10,13 @@ nbproject
 .settings
 
 # FuelPHP
+composer.lock
 fuel/app/cache
 fuel/app/config/crypt.php
 fuel/app/config/development
 fuel/app/logs
 fuel/app/tmp
+fuel/vendor
 
 fuel/app/tests/_files/.htaccess.develop
 fuel/app/tests/_files/bootstrap.php.develop
