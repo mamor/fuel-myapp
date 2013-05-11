@@ -7,7 +7,7 @@ fuel/app/_dl.shの位置で実行しています。
 ## .travis.yml
 Travis CIで使用するファイルです。
 
-## bootstrap_makegood.php
+## bootstrap_phpunit.php
 ユニットテストで使用するファイルです。  
 core/bootstrap_phpunit.phpを元にしています。
 
