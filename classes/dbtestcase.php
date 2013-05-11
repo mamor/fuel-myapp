@@ -89,8 +89,16 @@ abstract class DbTestCase extends TestCase
 				static::create_table_like($table);
 			}
 
-			$this->_fixt[$file] = DbFixture::load($table, $file);
+			if ($file === false)
+			{
+				DBUtil::truncate_table($table);
+			}
+			else
+			{
+				$this->_fixt[$file] = DbFixture::load($table, $file);
+			}
 		}
+
 	}
 
 	// ユニットテスト用にテーブルを複製
