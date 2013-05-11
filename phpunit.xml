@@ -20,6 +20,9 @@
 			<directory suffix=".php">../app/tasks</directory>
 			<exclude>
 				<directory suffix=".php">../app/classes/controller</directory>
+				<file>../app/classes/dbfixture.php</file>
+				<file>../app/classes/dbtestcase.php</file>
+				<file>../app/classes/functionaltestcase.php</file>
 			</exclude>
 		</whitelist>
 	</filter>
