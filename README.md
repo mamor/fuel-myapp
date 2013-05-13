@@ -18,6 +18,10 @@ https://github.com/mp-php/fuel-myapp/blob/master/jenkins.md
 ## jenkins.md
 Jenkinsのメモです。
 
+## phpunit.sh
+ユニットテストを実行するスクリプトです。  
+fuel/app/phpunit.sh のように、プロジェクト直下で実行します。
+
 ## phpunit.xml
 ユニットテストで使用するファイルです。  
 core/phpunit.xmlを元にしています。
