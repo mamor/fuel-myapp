@@ -1,6 +1,6 @@
 #!/bin/sh
 
-APPPATH="./"
+APPPATH="fuel/app/"
 
 # .gitignore
 wget -N -P ${APPPATH}../../ https://raw.github.com/mp-php/fuel-myapp/master/.gitignore --no-check-certificate
