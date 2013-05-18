@@ -11,6 +11,7 @@ APPPATH="fuel/app/"
 php composer.phar install
 
 # Root
+wget -N -P ./ https://raw.github.com/mp-php/fuel-myapp/master/Makefile --no-check-certificate
 wget -N -P ./ https://raw.github.com/mp-php/fuel-myapp/master/.gitignore --no-check-certificate
 # wget -N -P ./ https://raw.github.com/mp-php/fuel-myapp/master/build.xml --no-check-certificate
 
@@ -23,6 +24,9 @@ wget -N -P ${APPPATH}bin/ https://raw.github.com/mp-php/fuel-myapp/master/bin/ph
 wget -N -P ${APPPATH}bin/ https://github.com/mp-php/fuel-myapp/raw/master/bin/php-cs-fixer.phar --no-check-certificate
 wget -N -P ${APPPATH}bin/ https://raw.github.com/mp-php/fuel-myapp/master/bin/php-cs-fixer.sh --no-check-certificate
 wget -N -P ${APPPATH}bin/ https://raw.github.com/mp-php/fuel-myapp/master/bin/apigen.sh --no-check-certificate
+chmod +x ${APPPATH}bin/phpunit.sh
+chmod +x ${APPPATH}bin/apigen.sh
+chmod +x ${APPPATH}bin/php-cs-fixer.sh
 
 # fuel/app/classes/
 wget -N -P ${APPPATH}classes/ https://raw.github.com/mp-php/fuel-myapp/master/classes/dbfixture.php --no-check-certificate
