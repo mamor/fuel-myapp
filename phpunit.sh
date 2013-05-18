@@ -1,2 +1,2 @@
 rm -rf ./coverage
-phpunit --group=App --coverage-html ./coverage -c fuel/app/phpunit.xml
+phpunit --group=App --coverage-html ./reports/coverage -c fuel/app/phpunit.xml

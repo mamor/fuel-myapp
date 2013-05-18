@@ -10,7 +10,7 @@ nbproject
 .settings
 
 # FuelPHP
-/coverage/
+/reports/
 /composer.lock
 /fuel/app/cache/
 /fuel/app/config/crypt.php
