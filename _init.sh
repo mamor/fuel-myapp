@@ -30,6 +30,7 @@ wget -N -P ${APPPATH}tests/_files/ https://raw.github.com/mp-php/fuel-myapp/mast
 
 # FuelPHP tasks
 wget -N -P ${APPPATH}tasks/ https://raw.github.com/mp-php/fuel-myapp/master/tasks/generate.php --no-check-certificate
+php ../../oil r generate:autocomplete
 
 # Others
 # wget -N -P ${APPPATH}../../ https://raw.github.com/mp-php/fuel-myapp/master/build.xml --no-check-certificate
