@@ -1,8 +1,23 @@
 # 自分用の各種FuelPHPツールの保存場所です。
 ---
-## _init.sh
+## bin/init.sh
 以下のファイル(一部を除く)をのDL等、初期化の為のスクリプトです。  
-fuel/app/_init.shの位置で実行しています。
+プロジェクトルートで実行しています。
+
+## bin/apigen.sh
+ドキュメントを生成するスクリプトです。  
+プロジェクトルートで実行しています。
+
+## bin/phpunit.sh
+ユニットテストを実行するスクリプトです。  
+プロジェクトルートで実行しています。
+
+## bin/php-cs-fixer.phar
+http://cs.sensiolabs.org/
+
+## bin/php-cs-fixer.sh
+bin/php-cs-fixer.pharを実行するスクリプトです。
+プロジェクトルートで実行しています。
 
 ## .travis.yml
 Travis CIで使用するファイルです。
@@ -17,10 +32,6 @@ https://github.com/mp-php/fuel-myapp/blob/master/jenkins.md
 
 ## jenkins.md
 Jenkinsのメモです。
-
-## phpunit.sh
-ユニットテストを実行するスクリプトです。  
-fuel/app/phpunit.sh のように、プロジェクト直下で実行します。
 
 ## phpunit.xml
 ユニットテストで使用するファイルです。  
@@ -65,9 +76,3 @@ FuelPHP 1.5以降は、fromdbタスクをお使い下さい。
 
 ## tasks/testcase.php
 app/classesのファイルに対するテストクラスを生成するタスクです。
-
-## php-cs-fixer.phar
-http://cs.sensiolabs.org/
-
-## php-cs-fixer.sh
-php-cs-fixer.pharを実行するスクリプトです。
